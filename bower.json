@@ -1,0 +1,29 @@
+{
+  "name": "react-patternfly",
+  "version": "0.0.0",
+  "description": "React PatternFly",
+  "main": "dist/react-patternfly.min.js",
+  "homepage": "https://github.com/jtomasek/react-patternfly",
+  "authors": [
+    "Jiri Tomasek"
+  ],
+  "moduleType": [
+    "amd",
+    "globals",
+    "node"
+  ],
+  "keywords": [
+    "react",
+    "react-component"
+  ],
+  "license": "MIT",
+  "ignore": [
+    ".editorconfig",
+    ".gitignore",
+    "package.json",
+    "src",
+    "node_modules",
+    "example",
+    "test"
+  ]
+}
