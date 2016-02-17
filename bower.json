@@ -16,7 +16,7 @@
     "react",
     "react-component"
   ],
-  "license": "MIT",
+  "license": "Apache Licence, Version 2.0",
   "ignore": [
     ".editorconfig",
     ".gitignore",

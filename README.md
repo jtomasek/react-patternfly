@@ -4,7 +4,7 @@ This library provides a set of common React components for use with the PatternF
 
 Links:
 https://www.patternfly.org
-https://facebook.github.io/react/
+https://facebook.github.io/react  /
 
 
 ## Demo & Examples
@@ -59,6 +59,6 @@ To build, watch and serve the examples (which will also watch the component sour
 
 ## License
 
-__PUT LICENSE HERE__
+Apache License, Version 2.0
 
 Copyright (c) 2016 Jiri Tomasek.
