@@ -6,9 +6,9 @@ import PropTypes from 'prop-types'
 /* ListView example usage:
 
 <ListView>
-  <ListViewItem stacked expanded>
+  <ListGroupItem stacked expanded>
 
-    <ListViewItemHeader toggleExpanded={functionToToggle}> // required only if the ListViewItem is supposed to be expandable
+    <ListGroupItemHeader toggleExpanded={functionToToggle}> // required only if the ListGroupItem is supposed to be expandable
       <ListViewExpand expanded />
       <ListViewCheckbox disabled={inProgress} name={`values.${node.uuid}`} />
       <ListViewActions>
@@ -39,13 +39,13 @@ import PropTypes from 'prop-types'
           </ListViewAdditionalInfo>
         </ListViewBody>
       </ListViewMainInfo>
-    </ListViewItemHeader>
+    </ListGroupItemHeader>
 
-    <ListViewItemContainer onClose={functionWhichClosesMe} expanded> // expandable content
+    <ListGroupItemContainer onClose={functionWhichClosesMe} expanded> // expandable content
       <Row>Some content goes here</Row>
-    </ListViewItemContainer>
+    </ListGroupItemContainer>
 
-  </ListViewItem>
+  </ListGroupItem>
   ...
 </ListView>
 */
@@ -58,7 +58,7 @@ ListView.propTypes = {
   children: PropTypes.node
 }
 
-export const ListViewItem = ({ children, stacked, expanded }) => {
+export const ListGroupItem = ({ children, stacked, expanded }) => {
   const classes = ClassNames({
     'list-group-item': true,
     'list-view-pf-expand-active': expanded,
@@ -70,17 +70,17 @@ export const ListViewItem = ({ children, stacked, expanded }) => {
     </div>
   )
 }
-ListViewItem.propTypes = {
+ListGroupItem.propTypes = {
   children: PropTypes.node,
   expanded: PropTypes.bool.isRequired,
   stacked: PropTypes.bool.isRequired
 }
-ListViewItem.defaultProps = {
+ListGroupItem.defaultProps = {
   expanded: false,
   stacked: false
 }
 
-export const ListViewItemHeader = ({ children, toggleExpanded }) => {
+export const ListGroupItemHeader = ({ children, toggleExpanded }) => {
   const handleClick = e => {
     // ignore selected child elements click
     if (
@@ -98,12 +98,12 @@ export const ListViewItemHeader = ({ children, toggleExpanded }) => {
     </div>
   )
 }
-ListViewItemHeader.propTypes = {
+ListGroupItemHeader.propTypes = {
   children: PropTypes.node,
   toggleExpanded: PropTypes.func.isRequired
 }
 
-export const ListViewItemContainer = ({ children, expanded, onClose }) => {
+export const ListGroupItemContainer = ({ children, expanded, onClose }) => {
   const classes = ClassNames({
     'list-group-item-container container-fluid': true,
     hidden: !expanded
@@ -118,12 +118,12 @@ export const ListViewItemContainer = ({ children, expanded, onClose }) => {
     </div>
   )
 }
-ListViewItemContainer.propTypes = {
+ListGroupItemContainer.propTypes = {
   children: PropTypes.node,
   expanded: PropTypes.bool.isRequired,
   onClose: PropTypes.func
 }
-ListViewItemContainer.defaultProps = {
+ListGroupItemContainer.defaultProps = {
   expanded: false
 }
 

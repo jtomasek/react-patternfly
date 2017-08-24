@@ -2,20 +2,14 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import {
-  ListViewAdditionalInfo,
-  ListViewAdditionalInfoItem,
-  ListViewCheckbox,
   ListViewExpand,
-  ListViewItem,
-  ListViewItemHeader,
-  ListViewItemContainer,
-  ListViewLeft,
-  ListViewBody,
-  ListViewDescription,
-  ListViewDescriptionHeading,
-  ListViewDescriptionText,
-  ListViewMainInfo
+  ListGroupItem,
+  ListGroupItemHeader,
+  ListGroupItemContainer
 } from './index'
+
+import ListViewItem from './ListViewItem'
+import ListViewItemWrapper from './ListViewItemWrapper'
 
 export default class ExpandableListViewItem extends React.Component {
   constructor() {
@@ -34,93 +28,31 @@ export default class ExpandableListViewItem extends React.Component {
   }
 
   render() {
-    const {
-      children,
-      selectInput,
-      stacked,
-      expandedContent,
-      leftContent,
-      heading,
-      description
-    } = this.props
+    const { children, stacked, ...other } = this.props
     const { expanded } = this.state
 
-    if (expandedContent) {
+    if (children) {
       return (
-        <ListViewItem stacked={stacked} expanded={this.state.expanded}>
-          <ListViewItemHeader toggleExpanded={() => this.toggleExpanded()}>
+        <ListGroupItem stacked={stacked} expanded={this.state.expanded}>
+          <ListGroupItemHeader toggleExpanded={() => this.toggleExpanded()}>
             <ListViewExpand expanded={expanded} />
-            <ListViewCheckbox>
-              {selectInput}
-            </ListViewCheckbox>
-            <ListViewMainInfo>
-              <ListViewLeft>
-                {leftContent}
-              </ListViewLeft>
-              <ListViewBody>
-                <ListViewDescription>
-                  <ListViewDescriptionHeading>
-                    {heading}
-                  </ListViewDescriptionHeading>
-                  <ListViewDescriptionText>
-                    {description}
-                  </ListViewDescriptionText>
-                </ListViewDescription>
-                <ListViewAdditionalInfo>
-                  <ListViewAdditionalInfoItem>
-                    <span className="pficon pficon-flavor" />
-                    Item1
-                  </ListViewAdditionalInfoItem>
-                  <ListViewAdditionalInfoItem>
-                    <span className="pficon pficon-cpu" />
-                    Item2
-                  </ListViewAdditionalInfoItem>
-                </ListViewAdditionalInfo>
-              </ListViewBody>
-            </ListViewMainInfo>
-          </ListViewItemHeader>
-          <ListViewItemContainer
+            <ListViewItemWrapper {...other} />
+          </ListGroupItemHeader>
+          <ListGroupItemContainer
             expanded={expanded}
             onClose={() => this.toggleExpanded()}
           >
-            {expandedContent}
-          </ListViewItemContainer>
-        </ListViewItem>
+            {children}
+          </ListGroupItemContainer>
+        </ListGroupItem>
       )
     } else {
-      return (
-        <ListViewItem stacked={stacked}>
-          {selectInput &&
-            <ListViewCheckbox>
-              {selectInput}
-            </ListViewCheckbox>}
-          <ListViewMainInfo>
-            <ListViewLeft>
-              {leftContent}
-            </ListViewLeft>
-            <ListViewBody>
-              <ListViewDescription>
-                <ListViewDescriptionHeading>
-                  {heading}
-                </ListViewDescriptionHeading>
-                <ListViewDescriptionText>
-                  {description}
-                </ListViewDescriptionText>
-              </ListViewDescription>
-            </ListViewBody>
-          </ListViewMainInfo>
-        </ListViewItem>
-      )
+      return <ListViewItem stacked={stacked} {...other} />
     }
   }
 }
 ExpandableListViewItem.propTypes = {
-  selectInput: PropTypes.node,
-  leftContent: PropTypes.node,
-  heading: PropTypes.node,
-  description: PropTypes.node,
   children: PropTypes.node,
-  expandedContent: PropTypes.node,
   stacked: PropTypes.bool.isRequired,
   onExpand: PropTypes.func,
   onExpandClose: PropTypes.func
