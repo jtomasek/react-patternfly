@@ -1,13 +1,14 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
+import { Row, Col } from 'react-bootstrap'
 // import { action } from '@storybook/addon-actions'
-// import { withKnobs, text } from '@storybook/addon-knobs'
+import { withKnobs, boolean } from '@storybook/addon-knobs'
 import { defaultTemplate } from '../../storybook/decorators/storyTemplates'
 
-import { ListView, ListViewItem } from '../index'
+import { ListView, ExpandableListViewItem, ListViewItem } from '../index'
 
 const stories = storiesOf('ListView', module)
-// stories.addDecorator(withKnobs)
+stories.addDecorator(withKnobs)
 stories.addDecorator(
   defaultTemplate({
     title: 'ListView',
@@ -26,14 +27,20 @@ class TestExpandableListView extends React.Component {
   constructor() {
     super()
     this.state = {
-      items: [{ expanded: false }, { expanded: true }]
+      items: [
+        { title: 'Item 1', description: 'This is Item 1 description' },
+        { title: 'Item 2', description: 'This is Item 2 description' }
+      ]
     }
   }
 
-  toggleExpanded(index) {
-    this.setState(
-      prevState =>
-        (prevState.items[index].expanded = !prevState.items[index].expanded)
+  renderItemExpandedContent(item) {
+    return (
+      <Row>
+        <Col sm={12}>
+          {item.description}
+        </Col>
+      </Row>
     )
   }
 
@@ -41,15 +48,16 @@ class TestExpandableListView extends React.Component {
     return (
       <ListView>
         {this.state.items.map((item, index) =>
-          <ListViewItem
+          <ExpandableListViewItem
+            heading={item.title}
+            description={item.description}
+            expandedContent={this.renderItemExpandedContent(item)}
             key={index}
-            stacked
-            toggleExpanded={() => this.toggleExpanded(index)}
-            expanded={item.expanded}
-            expandedContent="hellop"
+            className="helloooooooo"
+            stacked={boolean('Stacked', false)}
           >
             Hi, I am here
-          </ListViewItem>
+          </ExpandableListViewItem>
         )}
       </ListView>
     )

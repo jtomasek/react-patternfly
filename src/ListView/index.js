@@ -58,45 +58,22 @@ ListView.propTypes = {
   children: PropTypes.node
 }
 
-export const ListViewItem = ({
-  children,
-  stacked,
-  expanded,
-  toggleExpanded,
-  expandedContent
-}) => {
+export const ListViewItem = ({ children, stacked, expanded }) => {
   const classes = ClassNames({
     'list-group-item': true,
     'list-view-pf-expand-active': expanded,
     'list-view-pf-stacked': stacked
   })
-
-  if (toggleExpanded) {
-    return (
-      <div className={classes}>
-        <ListViewItemHeader toggleExpanded={toggleExpanded}>
-          <ListViewExpand expanded={expanded} />
-          {children}
-        </ListViewItemHeader>
-        <ListViewItemContainer expanded={expanded} onClose={toggleExpanded}>
-          {expandedContent}
-        </ListViewItemContainer>
-      </div>
-    )
-  } else {
-    return (
-      <div className={classes}>
-        {children}
-      </div>
-    )
-  }
+  return (
+    <div className={classes}>
+      {children}
+    </div>
+  )
 }
 ListViewItem.propTypes = {
   children: PropTypes.node,
   expanded: PropTypes.bool.isRequired,
-  expandedContent: PropTypes.string,
-  stacked: PropTypes.bool.isRequired,
-  toggleExpanded: PropTypes.func
+  stacked: PropTypes.bool.isRequired
 }
 ListViewItem.defaultProps = {
   expanded: false,
@@ -154,11 +131,11 @@ export const ListViewCheckbox = ({ disabled, name }) =>
   <div className="list-view-pf-checkbox" />
 
 ListViewCheckbox.propTypes = {
-  disabled: PropTypes.bool.isRequired,
-  name: PropTypes.string.isRequired
+  // disabled: PropTypes.bool.isRequired,
+  // name: PropTypes.string.isRequired
 }
 ListViewCheckbox.defaultProps = {
-  disabled: false
+  // disabled: false
 }
 
 export const ListViewExpand = ({ expanded }) => {
