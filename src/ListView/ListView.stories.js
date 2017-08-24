@@ -5,7 +5,12 @@ import { Row, Col } from 'react-bootstrap'
 import { withKnobs, boolean } from '@storybook/addon-knobs'
 import { defaultTemplate } from '../../storybook/decorators/storyTemplates'
 
-import { ListView, ExpandableListViewItem, ListViewItem } from '../index'
+import {
+  ListView,
+  ExpandableListViewItem,
+  ListViewItem,
+  ListViewIcon
+} from '../index'
 
 const stories = storiesOf('ListView', module)
 stories.addDecorator(withKnobs)
@@ -29,19 +34,20 @@ class TestExpandableListView extends React.Component {
     this.state = {
       items: [
         { title: 'Item 1', description: 'This is Item 1 description' },
-        { title: 'Item 2', description: 'This is Item 2 description' }
+        { title: 'Item 2', description: 'This is Item 2 description' },
+        { title: 'Item 3', description: undefined }
       ]
     }
   }
 
   renderItemExpandedContent(item) {
-    return (
-      <Row>
-        <Col sm={12}>
-          {item.description}
-        </Col>
-      </Row>
-    )
+    return item.description
+      ? <Row>
+          <Col sm={12}>
+            {item.description}
+          </Col>
+        </Row>
+      : null
   }
 
   render() {
@@ -49,11 +55,12 @@ class TestExpandableListView extends React.Component {
       <ListView>
         {this.state.items.map((item, index) =>
           <ExpandableListViewItem
+            selectInput={<input type="checkbox" />}
+            leftContent={<ListViewIcon icon="fa fa-plane" />}
             heading={item.title}
             description={item.description}
             expandedContent={this.renderItemExpandedContent(item)}
             key={index}
-            className="helloooooooo"
             stacked={boolean('Stacked', false)}
           >
             Hi, I am here

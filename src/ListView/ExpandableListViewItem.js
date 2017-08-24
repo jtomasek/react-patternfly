@@ -2,6 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import {
+  ListViewAdditionalInfo,
+  ListViewAdditionalInfoItem,
   ListViewCheckbox,
   ListViewExpand,
   ListViewItem,
@@ -48,10 +50,9 @@ export default class ExpandableListViewItem extends React.Component {
         <ListViewItem stacked={stacked} expanded={this.state.expanded}>
           <ListViewItemHeader toggleExpanded={() => this.toggleExpanded()}>
             <ListViewExpand expanded={expanded} />
-            {selectInput &&
-              <ListViewCheckbox>
-                {selectInput}
-              </ListViewCheckbox>}
+            <ListViewCheckbox>
+              {selectInput}
+            </ListViewCheckbox>
             <ListViewMainInfo>
               <ListViewLeft>
                 {leftContent}
@@ -65,6 +66,16 @@ export default class ExpandableListViewItem extends React.Component {
                     {description}
                   </ListViewDescriptionText>
                 </ListViewDescription>
+                <ListViewAdditionalInfo>
+                  <ListViewAdditionalInfoItem>
+                    <span className="pficon pficon-flavor" />
+                    Item1
+                  </ListViewAdditionalInfoItem>
+                  <ListViewAdditionalInfoItem>
+                    <span className="pficon pficon-cpu" />
+                    Item2
+                  </ListViewAdditionalInfoItem>
+                </ListViewAdditionalInfo>
               </ListViewBody>
             </ListViewMainInfo>
           </ListViewItemHeader>
@@ -79,7 +90,25 @@ export default class ExpandableListViewItem extends React.Component {
     } else {
       return (
         <ListViewItem stacked={stacked}>
-          {children}
+          {selectInput &&
+            <ListViewCheckbox>
+              {selectInput}
+            </ListViewCheckbox>}
+          <ListViewMainInfo>
+            <ListViewLeft>
+              {leftContent}
+            </ListViewLeft>
+            <ListViewBody>
+              <ListViewDescription>
+                <ListViewDescriptionHeading>
+                  {heading}
+                </ListViewDescriptionHeading>
+                <ListViewDescriptionText>
+                  {description}
+                </ListViewDescriptionText>
+              </ListViewDescription>
+            </ListViewBody>
+          </ListViewMainInfo>
         </ListViewItem>
       )
     }

@@ -127,15 +127,13 @@ ListViewItemContainer.defaultProps = {
   expanded: false
 }
 
-export const ListViewCheckbox = ({ disabled, name }) =>
-  <div className="list-view-pf-checkbox" />
+export const ListViewCheckbox = ({ children }) =>
+  <div className="list-view-pf-checkbox">
+    {children}
+  </div>
 
 ListViewCheckbox.propTypes = {
-  // disabled: PropTypes.bool.isRequired,
-  // name: PropTypes.string.isRequired
-}
-ListViewCheckbox.defaultProps = {
-  // disabled: false
+  children: PropTypes.node.isRequired
 }
 
 export const ListViewExpand = ({ expanded }) => {
@@ -186,6 +184,9 @@ export const ListViewIcon = ({ icon, size }) => {
 ListViewIcon.propTypes = {
   icon: PropTypes.string.isRequired,
   size: PropTypes.oneOf(['sm', 'md', 'lg'])
+}
+ListViewIcon.defaultProps = {
+  size: 'sm'
 }
 
 export const ListViewBody = ({ children }) =>
