@@ -28,14 +28,14 @@ import PropTypes from 'prop-types'
             </ListViewDescriptionText>
           </ListViewDescription>
           <ListViewAdditionalInfo>
-            <ListViewAdditionalInfoItem>
+            <ListViewInfoItem>
               <span className="pficon pficon-flavor" />
               {Item1}
-            </ListViewAdditionalInfoItem>
-            <ListViewAdditionalInfoItem>
+            </ListViewInfoItem>
+            <ListViewInfoItem>
               <span className="pficon pficon-cpu" />
               {Item2}
-            </ListViewAdditionalInfoItem>
+            </ListViewInfoItem>
           </ListViewAdditionalInfo>
         </ListViewBody>
       </ListViewMainInfo>
@@ -229,10 +229,21 @@ ListViewAdditionalInfo.propTypes = {
   children: PropTypes.node
 }
 
-export const ListViewAdditionalInfoItem = ({ children }) =>
-  <div className="list-view-pf-additional-info-item">
-    {children}
-  </div>
-ListViewAdditionalInfoItem.propTypes = {
-  children: PropTypes.node
+export const ListViewInfoItem = ({ children, stacked }) => {
+  const classes = ClassNames(
+    { 'list-view-pf-additional-info-item-stacked': stacked },
+    'list-view-pf-additional-info-item'
+  )
+  return (
+    <div className={classes}>
+      {children}
+    </div>
+  )
+}
+ListViewInfoItem.propTypes = {
+  children: PropTypes.node,
+  stacked: PropTypes.bool.isRequired
+}
+ListViewInfoItem.defaultProps = {
+  stacked: false
 }

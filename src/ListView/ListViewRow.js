@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import {
   ListViewActions,
   ListViewAdditionalInfo,
-  ListViewAdditionalInfoItem,
+  ListViewInfoItem,
   ListViewCheckbox,
   ListViewLeft,
   ListViewBody,
@@ -14,7 +14,7 @@ import {
   ListViewMainInfo
 } from './index'
 
-const ListViewItemWrapper = ({
+const ListViewRow = ({
   actions,
   additionalItems,
   selectInput,
@@ -50,17 +50,13 @@ const ListViewItemWrapper = ({
           </ListViewDescription>}
         {additionalItems &&
           <ListViewAdditionalInfo>
-            {additionalItems.map((item, index) =>
-              <ListViewAdditionalInfoItem key={index}>
-                {item}
-              </ListViewAdditionalInfoItem>
-            )}
+            {additionalItems}
           </ListViewAdditionalInfo>}
       </ListViewBody>
     </ListViewMainInfo>
   </div>
 
-ListViewItemWrapper.propTypes = {
+ListViewRow.propTypes = {
   actions: PropTypes.node,
   additionalItems: PropTypes.arrayOf(PropTypes.node),
   description: PropTypes.node,
@@ -68,4 +64,4 @@ ListViewItemWrapper.propTypes = {
   leftContent: PropTypes.node,
   selectInput: PropTypes.node
 }
-export default ListViewItemWrapper
+export default ListViewRow
